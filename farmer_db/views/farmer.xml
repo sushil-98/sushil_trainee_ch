@@ -112,6 +112,8 @@
 		<menuitem id="menuitem3" name="Register as a farmer" action="farmer_app_action" parent="menuitem1"/>
 		<menuitem id="menuitem4" name="Search Agri Expert" action="agriexpert_search_action" parent="main_menu"/>
 		<menuitem id="menuitem5" name="Inquiry" action="farmer_inquiry_action" parent="main_menu"/>
+		<menuitem id="menuitem6" name="Availability/Schedule" action="farmer_inquiry_action" parent="main_menu"/>
+		<menuitem id="menuitem7" name="Observation" action="farmer_inquiry_action" parent="main_menu"/>
 		<!-- <Searching > -->
 		<record id="search_tree_view" model="ir.ui.view">
         <field name="name">agriexpert.agriexpert.search</field>
