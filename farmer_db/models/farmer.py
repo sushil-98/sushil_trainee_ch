@@ -19,8 +19,6 @@ class AgriExpert(models.Model):
 				raise ValidationError("license no must be less then 12 digits: %s" % record.license)
 			elif len(str(record.license)) <= 6:
 				raise ValidationError("license no must be greater then 6 digits: %s" % record.license)
-			# if len(str(record.license)) >= 12 or len(str(record.license)) <= 6:
-			# 	raise ValidationError("license no must be greater then six digits or less then 12 digits: %s" % record.license)
 
 class FarmerDetails(models.Model):
 	_name = "farmer.details"
