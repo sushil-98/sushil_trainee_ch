@@ -8,15 +8,15 @@ class AgriExpert(models.Model):
 
 	name = fields.Char(string='Enter name', required=True)
 	degree = fields.Char(string='Enter your degree', required=True)
-	license = fields.Integer(digits=(12, 6), string='Enter your license Number', required=True)
+	license = fields.Char(digits=(9, 6), string='Enter your license Number', required=True)
 	specialist = fields.Char(string='Specialist', required=True)
 	description = fields.Text(string='Description', help="enter something more about farmer")
 
 	@api.constrains('license')
 	def _check_license(self):
 		for record in self:
-			if len(str(record.license)) > 12:
-				raise ValidationError("license no must be less then 12 digits: %s" % record.license)
+			if len(str(record.license)) >= 9:
+				raise ValidationError("license no must be less then 9 digits: %s" % record.license)
 			elif len(str(record.license)) <= 6:
 				raise ValidationError("license no must be greater then 6 digits: %s" % record.license)
 
