@@ -1,0 +1,126 @@
+<odoo>
+	<data>
+		<record id="agriexpert_app_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.agriexpert.type.form</field>
+			<field name="model">agriexpert.agriexpert.type</field>
+			<field name="arch" type="xml">
+				<form string="Agri expert details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="degree"/>
+							<field name="license"/>
+							<field name="specialist"/>
+							<field name="description"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="agriexpert_app_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.agriexpert.type.tree</field>
+			<field name="model">agriexpert.agriexpert.type</field>
+			<field name="arch" type="xml">
+				<tree string="Agri expert details tree view">
+					<field name="name"/>
+					<field name="degree"/>
+					<field name="license"/>
+					<field name="specialist"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="agriexpert_app_action" model="ir.actions.act_window">
+			<field name="name">Agri Expert Details</field>
+			<field name="res_model">agriexpert.agriexpert.type</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="farmer_app_form_view" model="ir.ui.view">
+			<field name="name">farmer.details.form</field>
+			<field name="model">farmer.details</field>
+			<field name="arch" type="xml">
+				<form string="Farmer details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="crop_name"/>
+							<field name="biaran_name"/>
+							<field name="biaran_no"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="farmer_app_tree_view" model="ir.ui.view">
+			<field name="name">farmer.details.tree</field>
+			<field name="model">farmer.details</field>
+			<field name="arch" type="xml">
+				<tree string="farmer details">
+					<field name="name"/>
+					<field name="crop_name"/>
+					<field name="biaran_name"/>
+					<field name="biaran_no"/>
+				</tree>
+			</field>
+ 		</record>
+
+		<record id="farmer_inquiry_form_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.form</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<form string="Farmer inquiry details">
+					<sheet>
+						<group>
+							<field name="problem"/>
+							<field name="crop_name"/>
+							<field name="image" widget="image"/>
+							<field name="description"/>
+							<field name="agri_ex_id"/>
+							<field name="agri_specialist" readonly="1"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="farmer_inquiry_action" model="ir.actions.act_window">
+			<field name="name">Farmer inquiry Details</field>
+			<field name="res_model">farmer.inquiry</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="farmer_app_action" model="ir.actions.act_window">
+			<field name="name">Farmer Details</field>
+			<field name="res_model">farmer.details</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="agriexpert_search_action" model="ir.actions.act_window">
+			<field name="name">list of agriexpert</field>
+			<field name="res_model">agriexpert.agriexpert.type</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="main_menu" name="Crop Health"/>
+
+		<menuitem id="menuitem1" name="Registration" action="" parent="main_menu"/>
+		<menuitem id="menuitem2" name="Register as an Agri expert" action="agriexpert_app_action" parent="menuitem1"/>
+		<menuitem id="menuitem3" name="Register as a farmer" action="farmer_app_action" parent="menuitem1"/>
+		<menuitem id="menuitem4" name="Search Agri Expert" action="agriexpert_search_action" parent="main_menu"/>
+		<menuitem id="menuitem5" name="Inquiry" action="farmer_inquiry_action" parent="main_menu"/>
+		<!-- <Searching > -->
+		<record id="search_tree_view" model="ir.ui.view">
+        <field name="name">agriexpert.agriexpert.search</field>
+        <field name="model">agriexpert.agriexpert.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="specialist"/>
+            </search>
+        </field>
+    </record>
+	</data>
+</odoo>

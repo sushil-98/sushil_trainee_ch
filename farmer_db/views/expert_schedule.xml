@@ -1,0 +1,30 @@
+<!-- <odoo>
+	<data>
+		<record id="expert_schedule_form_view" model="ir.ui.view">
+			<field name="name">expert_schedule.type.form</field>
+			<field name="model">expert_schedule.type</field>
+			<field name="arch" type="xml">
+				<form string="Rounding form">
+					<sheet>
+						<group>
+							<field name="day"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+		<record id="expert_schedule_tree_view" model="ir.ui.view">
+			<field name="name">expert_schedule.type.tree</field>
+			<field name="model">expert_schedule.type</field>
+			<field name="arch" type="xml">
+				<form string="Rounding form">
+					<sheet>
+						<group>
+							<field name="day"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+	</data>
+</odoo> -->
