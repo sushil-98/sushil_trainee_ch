@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_header_demo,access_header_demo,model_header_demo,base.group_user,1,1,1,1

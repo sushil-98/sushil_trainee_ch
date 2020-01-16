@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_agriexpert_agriexpert_type,access_agriexpert_agriexpert_type,model_agriexpert_agriexpert_type,base.group_user,1,1,1,1
-access_farmer_details,access_farmer_details,model_farmer_details,base.group_user,1,1,1,1
-access_farmer_inquiry,access_farmer_inquiry,model_farmer_inquiry,base.group_user,1,1,1,1

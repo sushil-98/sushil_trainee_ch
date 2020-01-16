@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <report
+        id="agriexpert_report"
+        model="agriexpert.detail"
+        string="Print Report"
+        name="agri_app.agriexpert_report"
+        file="agri_app.agriexpert_report"
+        report_type="qweb-pdf" />
+
+    <template id="agriexpert_report">
+        <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+            			<t t-foreach="docs" t-as="doc">
+                        <h2>agri expert report</h2>
+                        <td>
+                        	<b>Name:</b>
+                        	<h2 t-field="doc.name"/>
+                        </td>
+                        <!-- <p>
+                            From 
+                            <span t-field="doc.start_date"/></p>
+                            to 
+                         <p>
+                            <span t-field="doc.end_date"/></p>
+ -->
+                        <p>
+                        	<td>
+                        		<b>Degree:</b>
+                        		<span t-field="doc.degree"/>
+                        	</td>
+                        </p>
+                        <p>
+                        	<td>
+                        		<b>License No:</b>
+                        		<span t-field="doc.license_no"/>
+                        	</td>
+                        </p>
+                        <p>
+                        	<td>
+                        		<b>Specialist:</b>
+                        		<span t-field="doc.specialist"/>
+                        	</td>
+                        </p>
+                        <p>
+                        	<td>
+                        		<b>Description:</b>
+                        		<span t-field="doc.description"/>
+                        	</td>
+                        </p>
+                		</t>
+                    </div>
+            </t>
+        </t>
+    </template>
+</odoo>
