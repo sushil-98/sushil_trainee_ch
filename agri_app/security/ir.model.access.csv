@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_agriexpert_detail,access_agriexpert_detail,model_agriexpert_detail,base.group_user,1,1,1,1
-access_farmer_detail,access_farmer_detail,model_farmer_detail,base.group_user,1,1,1,1
-access_crop_detail,access_crop_detail,model_crop_detail,base.group_user,1,1,1,1
-access_farmer_inquiry_detail,access_farmer_inquiry_detail,model_farmer_inquiry_detail,base.group_user,1,1,1,1
-access_agriexpert_availability,access_agriexpert_availability,model_agriexpert_availability,base.group_user,1,1,1,1
