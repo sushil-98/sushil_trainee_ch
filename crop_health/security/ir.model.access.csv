@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agriexpert_data,access_agriexpert_data,model_agriexpert_data,base.group_user,1,1,1,1
+access_crop_data,access_crop_data,model_crop_data,base.group_user,1,1,1,1
+access_agriexpert_schedule,access_agriexpert_schedule,model_agriexpert_schedule,base.group_user,1,1,1,1
+access_agriexpert_observation,access_agriexpert_observation,model_agriexpert_observation,base.group_user,1,1,1,1
+access_farmer_data,access_farmer_data,model_farmer_data,base.group_user,1,1,1,1
+access_farmer_inquiry,access_farmer_inquiry,model_farmer_inquiry,base.group_user,1,1,1,1
+

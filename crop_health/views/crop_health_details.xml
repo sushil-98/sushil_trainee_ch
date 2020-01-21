@@ -1,0 +1,391 @@
+<odoo>
+	<data>
+		
+		<record id="agriexpert_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.data.form</field>
+			<field name="name">agriexpert.data.graph</field>
+			<field name="model">agriexpert.data</field>
+			<field name="arch" type="xml">
+				<form string="Agri expert details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="degree"/>
+							<field name="license_no"/>
+							<field name="specialist"/>
+							<field name="description"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="agriexpert_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.data.tree</field>
+			<field name="model">agriexpert.data</field>
+			<field name="arch" type="xml">
+				<tree string="Agri expert details tree view">
+					<field name="name"/>
+					<field name="degree"/>
+					<field name="license_no"/>
+					<field name="specialist"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="agriexpert_detail_kanban" model="ir.ui.view">
+            <field name="name">agriexpert.data.kanban</field>
+            <field name="model">agriexpert.data</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="specialist">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                    t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    Nname:
+                                    <field name="name"/>
+                                    <br/>
+                                    Degree:
+                                    <field name="degree"/>
+                                    <br/>
+                                    License No:
+                                    <field name="license_no"/>
+                                    <br/>
+                                    Specialist:
+                                    <field name="specialist"/>
+                                    <br/>
+                                    description:
+                                    <field name="description"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+		<record id="agriexpert_data_action" model="ir.actions.act_window">
+			<field name="name">Agri Expert Details</field>
+			<field name="res_model">agriexpert.data</field>
+			<field name="view_mode">tree,form,kanban,graph</field>
+		</record>
+
+		<record id="crop_detail_form_view" model="ir.ui.view">
+			<field name="name">crop.data.form</field>
+			<field name="model">crop.data</field>
+			<field name="arch" type="xml">
+				<form string="Crop details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="seed_name"/>
+							<field name="seed_no"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="crop_detail_tree_view" model="ir.ui.view">
+			<field name="name">crop.data.tree</field>
+			<field name="model">crop.data</field>
+			<field name="arch" type="xml">
+				<tree string="Crop details tree view">
+					<field name="name"/>
+					<field name="seed_name"/>
+					<field name="seed_no"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="crop_data_action" model="ir.actions.act_window">
+			<field name="name">Crop Details</field>
+			<field name="res_model">crop.data</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="expert_availability_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.schedule.form</field>
+			<field name="model">agriexpert.schedule</field>
+			<field name="arch" type="xml">
+				<form string="create your schedule">
+					<sheet>
+						<group>
+							<field name="day_from"/>
+							<field name="time_from"/>
+						</group>
+						<group>
+							<field name="day_to"/>
+							<field name="time_to"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="expert_availability_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.schedule.tree</field>
+			<field name="model">agriexpert.schedule</field>
+			<field name="arch" type="xml">
+				<tree string='tree view'>
+					<field name="day_from"/>
+					<field name="time_from"/>
+					<field name="day_to"/>
+					<field name="time_to"/>
+				</tree>	
+			</field>	
+		</record>
+
+		
+
+		<record id="expert_schedule_availability_action" model="ir.actions.act_window">
+			<field name="name">create your schedule</field>
+			<field name="res_model">agriexpert.schedule</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="agriexpert_observation_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.observation.form</field>
+			<field name="model">agriexpert.observation</field>
+			<field name="arch" type="xml">
+				<form string="Crop details">
+					<sheet>
+						<group>
+							<field name="treatment"/>
+							<field name="detail"/>
+							<field name="observation"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="agriexpert_observation_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.observation.tree</field>
+			<field name="model">agriexpert.observation</field>
+			<field name="arch" type="xml">
+				<tree string="Crop details tree view">
+					<field name="treatment"/>
+					<field name="detail"/>
+					<field name="observation"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="agriexpert_observation_action" model="ir.actions.act_window">
+			<field name="name">Observation Details</field>
+			<field name="res_model">agriexpert.observation</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="farmer_data_form_view" model="ir.ui.view">
+			<field name="name">farmer.data.form</field>
+			<field name="model">farmer.data</field>
+			<field name="arch" type="xml">
+				<form string="Farmer details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="mobile_no"/>
+							<field name="email"/>
+							<field name="address"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="farmer_data_tree_view" model="ir.ui.view">
+			<field name="name">farmer.data.tree</field>
+			<field name="model">farmer.data</field>
+			<field name="arch" type="xml">
+				<tree string="Farmer details tree view">
+					<field name="name"/>
+					<field name="mobile_no"/>
+					<field name="email"/>
+					<field name="address"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="farmer_data_action" model="ir.actions.act_window">
+			<field name="name">Farmer Details</field>
+			<field name="res_model">farmer.data</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="farmer_inquiry_form_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.form</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<form string="Inquiry details form view">
+					<header>
+						<button name="button_new" string="New" class="btn-info" type="object" states="confirm"/>
+						<button name="button_confirm" string="Confirm" class="btn-primary" type="object" states="done"/>
+						<button name="button_done" string="Done" class="btn-success" type="object" states="confirm"/>
+						<button name="button_cancel" string="Cancelled" class="btn-danger" type="object" states="new,confirm,done"/>
+						<field name="state" widget="statusbar" statusbar_visible="new,confirm,done,cancel"/>
+					</header>
+					<sheet>
+						<group>
+							<field name="problem"/>
+							<field name="crop_id"/>
+							<field name="image" widget="image"/>
+							<field name="expert_id"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="farmer_inquiry_tree_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.tree</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<tree string="Inquiry details tree view">
+					<field name="problem"/>
+					<field name="crop_id"/>
+					<field name="image"/>
+					<field name="expert_id"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="farmer_inquiry_data_action" model="ir.actions.act_window">
+			<field name="name">Inquiry Details</field>
+			<field name="res_model">farmer.inquiry</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="agriexpert_dashboard_view" model="ir.ui.view">
+			<field name="name">agriexpert.data.dashboard</field>
+			<field name="model">agriexpert.data</field>
+			<field name="arch" type="xml">
+				<dashboard>
+		    		<view type="graph" ref="crop_health.agriexpert_graph_view"/>
+		    		<view type="kanban" ref="crop_health.agriexpert_detail_kanban"/>
+					
+					<view type="pivot" ref="crop_health.agriexpert_pivot_view"/>
+				</dashboard>
+			</field>
+		</record>
+
+		<record id="agriexpert_dashboard_action" model="ir.actions.act_window">
+			<field name="name">Agri Expert Details</field>
+			<field name="res_model">agriexpert.data</field>
+			<field name="view_mode">dashboard,tree,form,kanban,pivot</field>
+		</record>
+
+		<record id="agriexpert_pivot_view" model="ir.ui.view">
+			<field name="name">agriexpert.data.pivot</field>
+			<field name="model">agriexpert.data</field>
+			<field name="arch" type="xml">
+				<pivot string="Pivot view">
+					<field name="name" type="row"/>
+           			<field name="degree" type="col"/>
+				</pivot>
+			</field>
+		</record>
+
+
+		<record id="agriexpert_pivot_action" model="ir.actions.act_window">
+			<field name="name">Agri Expert Details</field>
+			<field name="res_model">agriexpert.data</field>
+			<field name="view_mode">tree,form,kanban,pivot</field>
+		</record>
+
+		<menuitem id="main_menu"
+		name="Crop Health"
+		web_icon="crop_health,static/description/icon.png"
+		action="agriexpert_dashboard_action"/>
+
+		<menuitem id="menuitem1"
+		name="New User"
+		action=""
+		parent="main_menu" sequence="1"/>
+
+		<menuitem id="menuitem8"
+		name="Register as an Agriexpert"
+		action="agriexpert_data_action"
+		parent="menuitem1" sequence="1"/>
+
+		<menuitem id="menuitem9"
+		name="Register as a Farmer"
+		action="farmer_data_action"
+		parent="menuitem1" sequence="2"/>
+
+		<menuitem id="menuitem2"
+		name="Inquiry"
+		action="farmer_inquiry_data_action"
+		parent="main_menu" sequence="2"/>
+
+		<menuitem id="menuitem3"
+		name="Observation"
+		action="agriexpert_observation_action"
+		parent="main_menu" sequence="3"/>
+
+		<menuitem id="menuitem4"
+		name="Configuration"
+		action=""
+		parent="main_menu" sequence="4"/>
+
+		<menuitem id="menuitem5"
+		name="Crop Details"
+		action="crop_data_action"
+		parent="menuitem4" sequence="1"/>
+
+		<menuitem id="menuitem6"
+		name="Availability/Schedule"
+		action="expert_schedule_availability_action"
+		parent="menuitem4" sequence="2"/>
+
+		<menuitem id="menuitem7"
+		name="Farmer Details"
+		action="expert_schedule_availability_action"
+		parent="menuitem4" sequence="3"/>
+
+		<menuitem id="menuitem10"
+		name="Search Agriexpert"
+		action="agriexpert_data_action"
+		parent="main_menu" sequence="5"/>
+
+		<menuitem id="menuitem11"
+		name="Reporting"
+		action="agriexpert_pivot_action"
+		parent="main_menu" sequence="6"/>
+
+		<record id="search_tree_view" model="ir.ui.view">
+        	<field name="name">agriexpert.datal.search</field>
+        	<field name="model">agriexpert.data</field>
+        	<field name="arch" type="xml">
+            	<search>
+            		<field name="name"/>
+                	<field name="specialist"/>
+            	</search>
+        	</field>
+    	</record>
+
+	</data>
+</odoo>
