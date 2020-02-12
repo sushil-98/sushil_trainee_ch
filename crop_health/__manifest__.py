@@ -3,15 +3,19 @@
 	'version' : '1.1',
 	'summary' : 'Agriculture Application',
 
-	'depends': ['web_dashboard'],
+	'depends': ['portal','web_dashboard'],
 
 	'data' : [
+		'security/security.xml',
 		'security/ir.model.access.csv',
 		'views/crop_health_details.xml',
-		# 'views/agriculture.xml',
-		# 'report/agriexpert_report.xml',
+		'views/crop_health_template.xml',
+		'views/user_portal.xml',
+		'report/report.xml',
 		# 'wizard/farmerinquiry_wizard.xml',
-		# 'templates/agri_templates.xml',
+	],
 
-	]
+	'demo': [
+        # 'demo/demo_data.xml',
+    ],
 }

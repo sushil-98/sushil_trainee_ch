@@ -1,0 +1,238 @@
+<odoo>
+    <template id="homepage" name="Your Menu" inherit_id="portal.portal_breadcrumbs"  priority="1">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li style="margin-left:10px"><b><a href="#">Inquiry</a></b></li>
+            <li style="margin-left:10px"><b><a href="#">Observation</a></b></li>
+            <li style="margin-left:60%">
+                <form class="" t-attf-action="/search/agriexpert/" method="post">
+                    <div>
+                        <select class="form-group" placeholder="Search.." name="specialist">
+                            <option value=""></option>
+                            <option value="wheat-specialist">Wheat Specialist</option>
+                            <option value="beans-specialist">Beans Specialist</option>
+                            <option value="tomato-specialist">Tomato Specialist</option>
+                            <option value="potato-specialist">Potato Specialist</option>
+                            <option value="cron-specialist">Cron Specialist</option>
+                        </select> 
+                        <button type="submit" class="btn btn-outline-primary">Search</button>
+                    </div>
+                </form>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="index">
+        <t t-call="portal.portal_layout">
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-80 p-1">
+                <t t-set="title">agriexpert</t>
+                    <div class="oe_structure">
+                        <div class="container">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th scope="col">Name</th>
+                                      <th scope="col">Degree</th>
+                                      <th scope="col">License No</th>
+                                      <th scope="col">Specialist</th>
+                                      <th scope="col">Description</th>
+                                      <th scope="col">Schedule</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="agriexpert" t-as="expert">
+                                        <tr>
+                                            <td><span t-field="expert.name"/></td>
+                                            <td><span t-field="expert.degree"/></td>
+                                            <td><span t-field="expert.license_no"/></td>
+                                            <td><span t-field="expert.specialist"/></td>
+                                            <td><span t-field="expert.description"/></td>
+                                            
+                                            <div class="col pl-0">
+                                                <td>
+                                                    <a role="button" t-attf-href="/schedule/record/{{ expert.id }}">Check Availibilty</a>
+                                                </td>
+                                            </div>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="schedule">
+        <t t-call="portal.frontend_layout">
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-50 p-1">
+                    <t t-set="title">schedule</t>
+                    <div class="col-sm-12">  
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Day from</th>
+                                  <th scope="col">Time from</th>
+                                  <th scope="col">Day to</th>
+                                  <th scope="col">Time to</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <h3>Agriexpert schedule</h3>
+                                <t t-foreach="schedule" t-as="sh">
+                                    <tr>
+                                        <td><span t-field="sh.day_from"/></td>
+                                        <td><span t-field="sh.time_from"/></td>
+                                        <td><span t-field="sh.day_to"/></td>
+                                        <td><span t-field="sh.time_to"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table> 
+                        <div class="col pl-0">
+                            <td>
+                                <a role="button" class="btn btn-info" t-attf-href="/inquiry/{{ expert_id }}">Inquiry</a>
+                            </td>
+                            <td>
+                                <a role="button" class="btn btn-warning" t-attf-href="/homepage/">Cancel</a>
+                            </td>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="user_inquiry">
+        <t t-call="portal.frontend_layout">
+            <t t-set="title">Inquiry</t>
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-60 p-1">
+                    <h4>submit your inquiry</h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th scope="col">Problem</th>
+                              <th scope="col">Crope</th>
+                              <th scope="col">Image</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="inquiry" t-as="inq">
+                                <tr>
+                                    <td><span t-field="inq.problem"/></td>
+                                    <td><span t-field="inq.crop_id"/></td>
+                                    <td><img class="" t-attf-src="data:image/*; base64,{{inq.image}}" /></td>
+                                    <div class="col pl-0">
+                                        <!-- <td>
+                                            <a t-attf-href="/inquiry/edit/{{slug(inq)}}" class=""><i class="fa fa-edit"/></a>
+                                        </td> -->
+                                        <td>
+                                            <a t-attf-href="/inquiry/delete/{{slug(inq)}}" class=""><i class="fa fa-trash"/></a>
+                                        </td>
+                                    </div>
+                                </tr>
+                            </t>
+                        </tbody>            
+                    </table>
+                    <tr>
+                        <div>
+                            <td>
+                                <a role="button" class="btn btn-outline-primary" t-attf-href="/inquiry/{{ expert_id }}">Submit</a>  
+                            </td>
+                            <td>
+                            <a role="button" class="btn btn-outline-danger" t-attf-href="/inquiry/{{ expert_id }}">Cancel</a>
+                        </td> 
+                        </div>
+                    </tr>
+                </div>
+            </div>  
+        </t>
+    </template>
+
+    <template id="inquiry_detail">
+        <t t-call="portal.frontend_layout">
+            <t t-set="title">Inquiry</t>
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-60 p-1">
+                    <h4>Create your inquiry</h4>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th scope="col">Problem</th>
+                              <th scope="col">Crope</th>
+                              <th scope="col">Image</th>
+                              <th scope="col">State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="inquiry" t-as="inq">
+                                <tr>
+                                    <td><span t-field="inq.problem"/></td>
+                                    <td><span t-field="inq.crop_id"/></td>
+                                    <td><img class="" t-attf-src="data:image/*; base64,{{inq.image}}" /></td>
+                                    <td><span t-field="inq.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>            
+                    </table>
+                        <tr>
+                            <div>
+                                <td>
+                                    <a role="button" class="btn btn-outline-primary" t-attf-href="/inquiry/edit/{{ expert_id }}">New Inquiry</a>  
+                                </td> 
+                            </div>
+                        </tr>    
+                </div>
+            </div>  
+        </t>
+    </template>
+
+    <template id="new_inquiry">
+        <t t-call="portal.frontend_layout">
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-40 p-1">
+                    <form t-attf-action="/inquiry/create/{{expert_id}}" method="post">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Problem Name:</label>
+                                <input type="text" class="form-control" t-attf-value="#{inq.problem if inq else ''}" name="problem" placeholder="Problem name"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Crop:</label>
+                                <select name="crop_name" class="form-control" t-attf-value="#{inq.crop_name if inq else ''}">
+                                    <t t-foreach="inquiry" t-as="inq">
+                                        <option t-attf-value="{{inq.crop_name}}">
+                                            <t t-esc='inq.crop_name'/>
+                                        </option>
+                                    </t>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="tomato">Tomato</option>
+                                    <option value="potato">Potato</option>
+                                    <option value="beans">Beans</option>
+                                    <option value="cron">Cron</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Seed Name:</label>
+                                <input type="text" class="form-control" t-attf-value="#{inq.seed_name if inq else ''}" name="seed_name" placeholder="Seed Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Seed Number:</label>
+                                <input type="text" class="form-control" t-attf-value="#{inq.seed_no if inq else ''}" name="seed_no" placeholder="Seed No"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Image:</label>
+                                <input type="file" class="form-control" name="image" multiple="true" data-show-upload="true" data-show-caption="true" data-show-preview="true"/>
+                            </div>
+                            <input type="submit" class="btn btn-outline-success" t-attf-value="#{'Update' if inq else 'Create'}"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>    
+    </template>
+</odoo>

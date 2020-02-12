@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <report
+        id="agriexpert_report"
+        model="farmer.inquiry"
+        string="Print Report"
+        name="crop_health.agriexpert_report"
+        file="crop_health.agriexpert_report"
+        report_type="qweb-pdf" />
+
+    <template id="agriexpert_report">
+        <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>farmer inquiry report</h2>
+                        <t t-foreach="docs" t-as="doc">
+                        <td>
+                        	<b>Problem:</b>
+                        	<h2 t-field="doc.problem"/>
+                        </td>
+                        <!-- <p>
+                            From 
+                            <span t-field="doc.start_date"/></p>
+                            to 
+                         <p>
+                            <span t-field="doc.end_date"/></p>
+ -->
+                        <p>
+                        	<td>
+                        		<b>Crop Name:</b>
+                        		<span t-field="doc.crop_id"/>
+                        	</td>
+                        </p>
+                        <p>
+                        	<td>
+                        		<b>Agriexpert:</b>
+                        		<span t-field="doc.expert_id"/>
+                        	</td>
+                        </p>
+                        <p>
+                        	<td>
+                        		<b>State:</b>
+                        		<span t-field="doc.state"/>
+                        	</td>
+                        </p>
+                		</t>
+                    </div>
+            </t>
+        </t>
+    </template>
+</odoo>

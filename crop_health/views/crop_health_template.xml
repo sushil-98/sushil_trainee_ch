@@ -1,0 +1,91 @@
+<odoo>
+    <template id="crophealth_home">
+        <t t-call="portal.frontend_layout">
+            <center>
+                <div class="col-sm-4">
+                    <div class="card" style="margin-top:50px">
+                        <table>
+                            <h3>Crop Health System</h3>
+                            <p style="color:green">
+                                <b>Register as an agriexpert or user to use the crop health system</b>
+                            </p>
+                            <td>
+                                <a role="button" class="btn btn-outline-secondary" t-attf-href="/userregister/">Agriexpert</a>
+                                <a role="button" class="btn btn-outline-dark" t-attf-href="/customer/">User</a>
+                            </td>
+                        </table>
+                    </div>
+                </div>
+            </center>
+        </t>
+    </template>
+
+    <template id="user_register">
+        <t t-call="portal.frontend_layout">
+            <div class="card" style="margin-top:50px">
+            	<form t-attf-action="/userregister/form" method="post">
+        			<div class="col-sm-4" style="margin-left:30%">
+        			<h3>Agriexpert Registeration</h3>
+                        <div class="form-group">
+                            <label>User Name:</label>
+                            <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+                        </div>
+                		<div class="form-group">
+                			<label>Email:</label>
+                			<input type="email" class="form-control" name="email" placeholder="Enter your email"/>
+            			</div>
+                        <div class="form-group">
+                            <label>Company Name:</label>
+                            <input type="text" class="form-control" name="name" placeholder="Enter your company name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Currency:</label>
+                            <select name="currency" class="form-control" id="currency">
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                            </select>
+                        </div>
+            			<div class="form-group">
+            				<label>Password:</label>
+                			<input type="password" class="form-control" name="password" placeholder="Enter Password"/>
+                		</div>
+                		<input type="submit" class="btn btn-outline-primary" name="submit" value="submit"/>
+            		</div>
+            	</form>
+            </div>	
+    	</t>       	
+    </template>
+
+    <template id="portal_user">
+        <t t-call="portal.frontend_layout">
+            <div class="card" style="margin-top:50px">
+                <form t-attf-action="/customer/form" method="post">
+                    <div class="col-sm-4" style="margin-left:30%">
+                        <h2>User Registeration</h2>
+                        <div class="form-group">
+                            <label>User Name:</label>
+                            <input type="text" class="form-control" name="name" placeholder="Enter your name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile No:</label>
+                            <input type="text" class="form-control" name="mobile_no" placeholder="Enter your mobile no"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" name="email" placeholder="Enter your email"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Address:</label>
+                            <input type="text" class="form-control" name="address" placeholder="Enter your Address"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            <input type="password" class="form-control" name="password" placeholder="Enter Password"/>
+                        </div>
+                        <input type="submit" class="btn btn-outline-primary" name="submit" value="submit"/>
+                    </div>
+                </form>
+            </div> 
+        </t>        
+    </template>
+</odoo>

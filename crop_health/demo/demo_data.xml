@@ -1,0 +1,91 @@
+<odoo>
+    <!-- <record id="s1" model="agriexpert.schedule">
+        <field name="day_from">monday</field>
+        <field name="time_from">11.00</field>
+        <field name="day_to">friday</field>
+        <field name="time_to">03.30</field>
+        <field name="schedule_id" ref="crop_health.expert1"/>
+    </record>
+    <record id="s2" model="agriexpert.schedule">
+        <field name="day_from">monday</field>
+        <field name="time_from">10.15</field>
+        <field name="day_to">saturday</field>
+        <field name="time_to">01.30</field>
+        <field name="schedule_id" ref="crop_health.expert1"/>
+    </record> -->
+<!--     <record id="s3" model="agriexpert.schedule">
+        <field name="day_from">monday</field>
+        <field name="time_from">10.15</field>
+        <field name="day_to">saturday</field>
+        <field name="time_to">01.30</field>
+        <field name="schedule_id" ref="crop_health.expert2"/>
+    </record> -->
+    
+    <!-- <record id="expert2" model="agriexpert.data">
+        <field name="name">Sandip</field>
+        <field name="degree">Crop Health</field>
+        <field name="license_no">48758944</field>
+        <field name="specialist">wheat-specialist</field>
+        <field name="description">expert in agri</field>
+        <field name="schedule_ids" eval="[(6, 0, [ref('crop_health.s2')])]"/>
+    </record> -->
+    <record id="crp1" model="crop.data">
+        <field name="name">Beans</field>
+        <field name="seed_name">B-665</field>
+        <field name="seed_no">48758944</field>
+    </record>
+    <record id="crp2" model="crop.data">
+        <field name="name">Wheat</field>
+        <field name="seed_name">Wheat-775</field>
+        <field name="seed_no">48758944</field>
+    </record>
+    <record id="crp3" model="crop.data">
+        <field name="name">Cron</field>
+        <field name="seed_name">cron-25</field>
+        <field name="seed_no">568755</field>
+    </record>
+    <record id="f1" model="farmer.data">
+        <field name="name">joy</field>
+        <field name="mobile_no">5896587452</field>
+        <field name="email">joy.com</field>
+        <field name="address">randheja</field>
+    </record>
+    <record id="f2" model="farmer.data">
+        <field name="name">rahul</field>
+        <field name="mobile_no">8547854562</field>
+        <field name="email">rh.com</field>
+        <field name="address">surat</field>
+    </record>
+    <record id="ob1" model="agriexpert.observation">
+        <field name="solution">TRUE</field>
+        <field name="farmer_id" ref="crop_health.f1"/>
+        <field name="treatment">use daily</field>
+        <field name="detail">for one week</field>
+    </record>
+    <record id="ob2" model="agriexpert.observation">
+        <field name="phisical">TRUE</field>
+        <field name="farmer_id" ref="crop_health.f2"/>
+        <field name="observation">2020-02-10 10:50:06</field>
+        <field name="description">be present on above dated schedule</field>
+    </record>
+    <record id="inquiry1" model="farmer.inquiry">
+        <field name="problem">insect problem from last week</field>
+        <field name="crop_id" eval="[(6, 0, [ref('crop_health.crp1'), ref('crop_health.crp2')])]"/>
+        <field name="image" type="base64" file="crop_health/static/src/download.jpeg"/>
+        <field name="expert_id" ref="crop_health.expert1"/>
+    </record>
+    <!-- <record id="inquiry2" model="farmer.inquiry">
+        <field name="problem">insect problem from last week</field>
+        <field name="crop_id" eval="[(6, 0, [ref('crop_health.crp1'), ref('crop_health.crp3')])]"/>
+        <field name="image" type="base64" file="crop_health/static/src/download.jpeg"/>
+        <field name="expert_id" ref="crop_health.expert2"/>
+    </record> -->
+    <record id="expert1" model="agriexpert.data">
+        <field name="name">janak</field>
+        <field name="degree">BRS</field>
+        <field name="license_no">45878965</field>
+        <field name="specialist">beans-specialist</field>
+        <field name="description">Agri expert</field>
+        <field name="schedule_ids" eval="[(6, 0, [ref('crop_health.s1'), ref('crop_health.s2')])]"/>
+    </record>
+</odoo>
