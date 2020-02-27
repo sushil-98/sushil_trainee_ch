@@ -1,5 +1,13 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
+access_agriexpert_data_admin,access_agriexpert_data,model_agriexpert_data,,1,1,1,1
+access_crop_data_admin,access_crop_data,model_crop_data,,1,1,1,1
+access_agriexpert_schedule_admin,access_agriexpert_schedule,model_agriexpert_schedule,,1,1,1,1
+access_agriexpert_observation_admin,access_agriexpert_observation,model_agriexpert_observation,,1,1,1,1
+access_farmer_data_admin,access_farmer_data,model_farmer_data,,1,1,1,1
+access_farmer_inquiry_admin,access_farmer_inquiry,model_farmer_inquiry,,1,1,1,1
+access_payment_data_admin,access_payment_data,model_payment_data,,1,1,1,1
+
 access_agriexpert_data_agriexpert,access_agriexpert_data,model_agriexpert_data,group_agriexpert,1,1,1,1
 access_crop_data_agriexpert,access_crop_data,model_crop_data,group_agriexpert,1,1,1,1
 access_agriexpert_schedule_agriexpert,access_agriexpert_schedule,model_agriexpert_schedule,group_agriexpert,1,1,1,1

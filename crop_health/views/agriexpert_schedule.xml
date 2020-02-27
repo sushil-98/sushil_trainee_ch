@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="expert_availability_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.schedule.form</field>
+			<field name="model">agriexpert.schedule</field>
+			<field name="arch" type="xml">
+				<form string="create your schedule">
+					<sheet>
+						<group>
+							<group>
+								<field name="day_from"/>
+								<field name="time_from" widget="float_time"/>
+							</group>
+							<group>
+								<field name="day_to"/>
+								<field name="time_to" widget="float_time"/>
+							</group>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="expert_availability_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.schedule.tree</field>
+			<field name="model">agriexpert.schedule</field>
+			<field name="arch" type="xml">
+				<tree string='tree view'>
+					<field name="day_from"/>
+					<field name="time_from" widget="float_time"/>
+					<field name="day_to"/>
+					<field name="time_to" widget="float_time"/>
+				</tree>	
+			</field>	
+		</record>
+
+		<record id="expert_schedule_availability_action" model="ir.actions.act_window">
+			<field name="name">create your schedule</field>
+			<field name="res_model">agriexpert.schedule</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</odoo>

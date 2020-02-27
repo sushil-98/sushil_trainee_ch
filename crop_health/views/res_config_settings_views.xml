@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.inherit.web.geoloclaize</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='base_geolocalize_warning']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane" name="crop_health_right_pane">
+                        <label for="sandbox_merchant_id" string="Merchant ID:"/>
+                        <field name="sandbox_merchant_id"/>
+                        <!-- <label for="website_url" string="Website url"/>
+                        <field name="website_url"/> -->
+                        <label for="sandbox_merchant_key" string="Merchant Key"/>
+                        <field name="sandbox_merchant_key"/>
+                        <!-- <label for="industry_type" string="Industry type"/>
+                        <div class="text-muted">
+                            <field name="industry_type"/>
+                        </div> -->
+                    </div>
+                </div>
+            </xpath>          
+        </field>
+    </record>
+</odoo>

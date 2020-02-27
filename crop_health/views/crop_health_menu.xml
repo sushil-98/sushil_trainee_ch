@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="agriexpert_dashboard_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.dashboard</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<dashboard>
+		    		<view type="graph" ref="crop_health.farmer_inquiry_graph_view"/>
+		    		<view type="kanban" ref="crop_health.farmer_inquiry_kanban"/>
+					<!-- <group string="Dashboard">	
+					</group> -->
+					<view type="pivot" ref="crop_health.farmer_inquiry_pivot_view"/>
+				</dashboard>
+			</field>
+		</record>
+
+		<record id="agriexpert_dashboard_action" model="ir.actions.act_window">
+			<field name="name">Inquiry Details</field>
+			<field name="res_model">farmer.inquiry</field>
+			<field name="view_mode">dashboard,tree,form,pivot,graph,kanban</field>
+		</record>
+
+		<!-- <Main menu> -->
+		<menuitem id="main_menu"
+		name="Crop Health"
+		web_icon="crop_health,static/description/icon.png"
+		action="agriexpert_dashboard_action"/>
+
+		<!-- <Agriexpert menu> -->
+		<menuitem id="menuitem1"
+		name="Agriexpert"
+		action=""
+		parent="main_menu" sequence="1"/>
+
+		<menuitem id="menuitem16"
+		name="Fill Your Details"
+		action="agriexpert_data_action"
+		parent="menuitem1" sequence="1"/>
+
+		<menuitem id="menuitem2"
+		name="Inquiry"
+		action="farmer_inquiry_data_action"
+		parent="menuitem1" sequence="2"/>
+		
+		<menuitem id="menuitem3"
+		name="Treatment/Observation"
+		action="agriexpert_treatment_action"
+		parent="menuitem1" sequence="3"/>
+
+		<menuitem id="menuitem8"
+		name="Reporting"
+		action=""
+		parent="main_menu" sequence="3"/>
+
+		<menuitem id="menuitem9"
+		name="Inquiry"
+		action="farmer_inquiry_pivot_action"
+		parent="menuitem8" sequence="1"/>
+
+		<menuitem id="menuitem10"
+		name="Observation"
+		action="agriexpert_observation_pivot_action"
+		parent="menuitem8" sequence="2"/>
+
+		<menuitem id="menuitem11"
+		name="Configuration"
+		action=""
+		parent="main_menu" sequence="4"/>
+
+		<menuitem id="menuitem12"
+		name="Crop Details"
+		action="crop_data_action"
+		parent="menuitem11" sequence="1"/>
+
+		<menuitem id="menuitem13"
+		name="Availability/Schedule"
+		action="expert_schedule_availability_action"
+		parent="menuitem11" sequence="2"/>
+
+		<menuitem id="menuitem14"
+		name="Farmer Details"
+		action="farmer_data_action"
+		parent="menuitem11" sequence="3"/>
+
+		<menuitem id="menuitem17"
+		name="Payment"
+		action="agriexpert_payment_action"
+		parent="main_menu" sequence="6"/>
+
+
+		<!-- <Farmer menu> -->
+		<!-- <menuitem id="menuitem4"
+		name="Farmer"
+		action=""
+		parent="main_menu" sequence="2"/>
+
+		<menuitem id="menuitem5"
+		name="Search Agriexpert"
+		action="agriexpert_data_action"
+		parent="menuitem4" sequence="1"/>
+
+		<menuitem id="menuitem6"
+		name="Inquiry"
+		action="farmer_inquiry_data_action"
+		parent="menuitem4" sequence="2"/>
+
+		<menuitem id="menuitem7"
+		name="Observation"
+		action="agriexpert_observation_action"
+		parent="menuitem4" sequence="3"/> -->
+
+		<record id="search_tree_view" model="ir.ui.view">
+        	<field name="name">agriexpert.data.search</field>
+        	<field name="model">agriexpert.data</field>
+        	<field name="arch" type="xml">
+            	<search>
+            		<field name="name"/>
+                	<field name="specialist"/>
+            	</search>
+        	</field>
+    	</record>
+
+	</data>
+</odoo>

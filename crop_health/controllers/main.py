@@ -1,13 +1,18 @@
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 from odoo import http
-from odoo.http import request
 from odoo.addons.web.controllers.main import Home
-import base64
+from odoo.http import request
+
 
 class Home(Home):
     def _login_redirect(self, uid, redirect=None):
         if request.session.uid and request.env['res.users'].sudo().browse(request.session.uid).has_group('crop_health.group_agriexpert'):
             return '/web/'
-        if  request.session.uid and request.env['res.users'].sudo().browse(request.session.uid).has_group('base.group_portal'):
+        if request.session.uid and request.env['res.users'].sudo().browse(request.session.uid).has_group('base.group_user'):
+            return '/web/'
+        if request.session.uid and request.env['res.users'].sudo().browse(request.session.uid).has_group('base.group_portal'):
             return '/homepage'
         return super(AgriexpertRegister, self)._login_redirect(uid, redirect=redirect)
 

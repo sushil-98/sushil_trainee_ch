@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="farmer_inquiry_tree_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.tree</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<tree string="Inquiry details tree view" decoration-success="state=='new'" decoration-warning="state=='confirm'" decoration-danger="state=='cancel'" decoration-primary="state=='done'">
+					<field name="problem"/>
+					<field name="crop_id" widget=""/>
+					<field name="image"/>
+					<field name="farmer_id"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		<record id="farmer_inquiry_form_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.form</field>
+			<field name="model">farmer.inquiry</field>
+
+			<field name="arch" type="xml">
+				<form string="Inquiry details form view">
+					<header>
+						<button name="button_new" string="New" class="btn-info" type="object" states="cancel"/>
+
+						<button name="button_confirm" string="Confirm" class="btn-primary" type="object" states="new"/>
+
+						<button name="button_done" string="Done" class="btn-success" type="object" states="new,confirm"/>
+
+						<button name="button_cancel" string="Cancelled" class="btn-danger" type="object" states="new,confirm,done"/>
+
+						<field name="state" widget="statusbar" statusbar_visible="new,confirm,done,cancel" clickable="True"/>
+					</header>
+					<sheet>
+						<div class="oe_button_box" style="padding:1mm">
+							<button name="inquiry" string="Treatment" type="object">	
+							</button>
+						</div>
+						<group>
+							<field name="problem"/>
+							<field name="image" widget="image"/>
+						</group>
+						<notebook>
+							<page string="Crop Details">
+								<form>
+									<group>
+										<field name="crop_id" widget="many2one_tags"/>
+									</group>
+								</form>
+							</page>
+							<page string="Farmer Details">
+								<form>
+									<group>
+										<field name="farmer_id"/>
+									</group>
+								</form>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+		                <field name="message_follower_ids" widget="mail_followers"/>
+		                <field name="activity_ids" widget="mail_activity"/>
+		                <field name="message_ids" widget="mail_thread"/>
+            		</div>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="farmer_inquiry_graph_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.graph</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<graph string="Graph view">
+					<field name="state"/>
+				</graph>
+			</field>	
+		</record>
+
+
+		<record id="farmer_inquiry_kanban" model="ir.ui.view">
+            <field name="name">farmer.inquiry.kanban</field>
+            <field name="model">farmer.inquiry</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state">
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                    t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                                <div class="oe_dropdown_kanban">
+                                    <!-- dropdown menu -->
+                                    <div class="oe_dropdown_toggle">
+                                        <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                        <ul class="oe_dropdown_menu">
+                                            <li>
+                                                <a type="delete">Delete</a>
+                                            </li>
+                                            <li>
+                                                <ul class="oe_kanban_colorpicker"
+                                                    data-field="color"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div t-attf-class="oe_kanban_content">
+                                    <!-- title -->
+                                    Problem:
+                                    <field name="problem"/>
+                                    <br/>
+                                    Crop Name:
+                                    <field name="crop_id"/>
+                                    <!-- <br/>
+                                    State:
+                                    <field name="state"/> -->
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+		<record id="farmer_inquiry_pivot_view" model="ir.ui.view">
+			<field name="name">farmer.inquiry.pivot</field>
+			<field name="model">farmer.inquiry</field>
+			<field name="arch" type="xml">
+				<pivot string="Pivot view">
+					<field name="state" type="col"/>
+					<!-- <field name="crop_id" type="col"/> -->
+           			<field name="problem" type="row"/>
+				</pivot>
+			</field>
+		</record>
+
+		<record id="farmer_inquiry_pivot_action" model="ir.actions.act_window">
+			<field name="name">Inquiry</field>
+			<field name="res_model">farmer.inquiry</field>
+			<field name="view_mode">pivot,tree,form</field>
+		</record>
+
+		<record id="agriexpert_observation_pivot_view" model="ir.ui.view">
+			<field name="name">agriexpert.observation.pivot</field>
+			<field name="model">agriexpert.observation</field>
+			<field name="arch" type="xml">
+				<pivot string="Pivot view">
+					<!-- <field name="farmer_id" type="col"/> -->
+					<field name="inquiry_id" type="col"/>
+           			<field name="observation" type="row" interval="day"/>
+				</pivot>
+			</field>
+		</record>
+
+		<record id="agriexpert_observation_pivot_action" model="ir.actions.act_window">
+			<field name="name">Observation schedule</field>
+			<field name="res_model">agriexpert.observation</field>
+			<field name="view_mode">pivot,tree,form</field>
+		</record>
+
+		<record id="farmer_inquiry_data_action" model="ir.actions.act_window">
+			<field name="name">Inquiry Details</field>
+			<field name="res_model">farmer.inquiry</field>
+			<field name="view_mode">tree,form,pivot,graph,kanban</field>
+			<field name="view_id" ref="farmer_inquiry_tree_view"/>
+		</record>
+	</data>
+</odoo>

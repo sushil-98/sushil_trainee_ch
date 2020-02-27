@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="agriexpert_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.data.form</field>
+			<field name="name">agriexpert.data.graph</field>
+			<field name="model">agriexpert.data</field>
+			<field name="arch" type="xml">
+				<form string="Agri expert details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="degree"/>
+							<field name="license_no"/>
+						</group>
+						<notebook>
+							<page string="Info">
+								<form>
+									<group>
+										<field name="specialist"/>
+										<field name="description"/>
+									</group>
+								</form>
+							</page>
+							<page string="Schedule">
+								<form>
+									<group>
+										<field name="schedule_ids"/>
+									</group>
+								</form>
+							</page>
+						</notebook>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+		<record id="agriexpert_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.data.tree</field>
+			<field name="model">agriexpert.data</field>
+			<field name="arch" type="xml">
+				<tree string="tree view">
+					<field name="name"/>
+					<field name="degree"/>
+					<field name="license_no"/>
+					<field name="specialist"/>
+					<field name="description"/>
+					<!-- <field name="schedule_ids" string="new"/> -->
+				</tree>
+			</field>
+		</record>
+		<record id="agriexpert_data_action" model="ir.actions.act_window">
+			<field name="name">Agri Expert Details</field>
+			<field name="res_model">agriexpert.data</field>
+			<field name="view_mode">tree,form,graph</field>
+		</record>
+	</data>
+</odoo>

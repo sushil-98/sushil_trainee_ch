@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="crophealth_home">
         <t t-call="portal.frontend_layout">
@@ -5,7 +6,7 @@
                 <div class="col-sm-4">
                     <div class="card" style="margin-top:50px">
                         <table>
-                            <h3>Crop Health System</h3>
+                            <h3>Crop Health</h3>
                             <p style="color:green">
                                 <b>Register as an agriexpert or user to use the crop health system</b>
                             </p>

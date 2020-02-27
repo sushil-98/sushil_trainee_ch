@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="agriexpert_observation_form_view" model="ir.ui.view">
+			<field name="name">agriexpert.observation.form</field>
+			<field name="model">agriexpert.observation</field>
+			<field name="arch" type="xml">
+				<form string="Crop details">
+					<sheet>
+						<div class="oe_button_box">
+							<button name="inquiry_charge" string="Inquiry Charge" type="object">	
+							</button>
+						</div>
+						<group>
+							<group>
+								<field name="solution" widget="checkbox"/>
+								
+								<field name="treatment" attrs="{'invisible':[('solution','=',False)]}"/>
+								<field name="detail" attrs="{'invisible':[('solution','=',False)]}"/>		
+							</group>
+							<group>
+								<field name="physical" widget="checkbox"/>
+								<field name="observation" attrs="{'invisible':[('physical','=',False)]}"/>
+								<field name="description" attrs="{'invisible':[('physical','=',False)]}" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Farmer name">
+								<group>
+									<field name="inquiry_id"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="agriexpert_treatment_tree_view" model="ir.ui.view">
+			<field name="name">agriexpert.observation.tree</field>
+			<field name="model">agriexpert.observation</field>
+			<field name="arch" type="xml">
+				<tree string="tree view">
+					<field name="inquiry_id"/>
+					<field name="treatment"/>
+					<field name="detail"/>
+					<field name="observation"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="agriexpert_treatment_action" model="ir.actions.act_window">
+			<field name="name">Observation Details</field>
+			<field name="res_model">agriexpert.observation</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

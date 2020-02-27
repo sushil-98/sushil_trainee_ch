@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="homepage" name="Your Menu" inherit_id="portal.portal_breadcrumbs"  priority="1">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
@@ -8,11 +9,11 @@
                     <div>
                         <select class="form-group" placeholder="Search.." name="specialist">
                             <option value=""></option>
-                            <option value="wheat-specialist">Wheat Specialist</option>
-                            <option value="beans-specialist">Beans Specialist</option>
-                            <option value="tomato-specialist">Tomato Specialist</option>
-                            <option value="potato-specialist">Potato Specialist</option>
-                            <option value="cron-specialist">Cron Specialist</option>
+                            <option value="wheat_specialist">Wheat Specialist</option>
+                            <option value="beans_specialist">Beans Specialist</option>
+                            <option value="tomato_specialist">Tomato Specialist</option>
+                            <option value="potato_specialist">Potato Specialist</option>
+                            <option value="cron_specialist">Cron Specialist</option>
                         </select> 
                         <button type="submit" class="btn btn-outline-primary">Search</button>
                     </div>
@@ -127,11 +128,11 @@
                                     <td><span t-field="inq.crop_id"/></td>
                                     <td><img class="" t-attf-src="data:image/*; base64,{{inq.image}}" /></td>
                                     <div class="col pl-0">
-                                        <!-- <td>
-                                            <a t-attf-href="/inquiry/edit/{{slug(inq)}}" class=""><i class="fa fa-edit"/></a>
-                                        </td> -->
                                         <td>
-                                            <a t-attf-href="/inquiry/delete/{{slug(inq)}}" class=""><i class="fa fa-trash"/></a>
+                                            <a t-attf-href="/inquiry/edit/{{slug(inq)}}"><i class="fa fa-edit"/></a>
+                                        </td>
+                                        <td>
+                                            <a t-attf-href="/inquiry/delete/{{slug(inq)}}"><i class="fa fa-trash"/></a>
                                         </td>
                                     </div>
                                 </tr>
@@ -166,6 +167,7 @@
                               <th scope="col">Crope</th>
                               <th scope="col">Image</th>
                               <th scope="col">State</th>
+                              <th scope="col">Payment</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -175,6 +177,11 @@
                                     <td><span t-field="inq.crop_id"/></td>
                                     <td><img class="" t-attf-src="data:image/*; base64,{{inq.image}}" /></td>
                                     <td><span t-field="inq.state"/></td>
+                                    <td>
+                                    <t t-if="inq.state == 'done'">
+                                       <a role="button" class="btn btn-outline-primary" t-attf-href="/payment/{{ inq.id }}">Pay to view your treatment</a>
+                                    </t>
+                                    </td>
                                 </tr>
                             </t>
                         </tbody>            
@@ -182,7 +189,7 @@
                         <tr>
                             <div>
                                 <td>
-                                    <a role="button" class="btn btn-outline-primary" t-attf-href="/inquiry/edit/{{ expert_id }}">New Inquiry</a>  
+                                    <a role="button" class="btn btn-outline-primary" t-attf-href="/inquiry/edit/{{ expert_id }}">New Inquiry</a>
                                 </td> 
                             </div>
                         </tr>    
@@ -195,7 +202,7 @@
         <t t-call="portal.frontend_layout">
             <div class="container py-2">
                 <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-40 p-1">
-                    <form t-attf-action="/inquiry/create/{{expert_id}}" method="post">
+                        <form t-attf-action="/inquiry/create/{{expert_id}}" method="post">
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>Problem Name:</label>
@@ -234,5 +241,99 @@
                 </div>
             </div>
         </t>    
+    </template>
+    <template id="payment_data">
+        <t t-call="portal.frontend_layout">
+            <div class="container py-2">
+                <!-- <form method="post"> -->
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-40 p-1">
+                    <div class="col-sm-4">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Charge for</th>
+                                  <th scope="col">Amount</th>
+                                  <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <h3>Payment Description</h3>
+                                <t t-foreach="payment" t-as="pmt">
+                                    <tr>
+                                        <td><span t-field="pmt.name"/></td>
+                                        <td><span t-field="pmt.amount"/></td>
+                                        <td><span t-field="pmt.description"/></td>
+                                        <input type="hidden" id="payment_id" name="payment_id" t-attf-value="{{ pmt.id }}"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                         <div>
+                            <a role="button" class="btn btn-outline-primary" id="pay_now" t-attf-href="#">pay now</a>
+                            <script type="text/javascript" src="/crop_health/static/src/js/payment_order.js"></script>
+                        </div>
+                    </div>
+                </div>
+            <!-- </form> -->
+            </div>
+        </t>    
+    </template>
+
+    <template id="payment_process">
+        <t t-call="portal.frontend_layout">
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-50 p-1">
+                    <t t-set="title">payment_confirm</t>
+                    <div class="col-sm-6">
+                        <h4>payment process</h4>
+                        <t t-foreach="payment" t-as="pt">
+                            <tr>
+                                <td><span t-field="pt.payment_status"/></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <t t-if="pt.payment_status == 'done'">
+                                       <a role="button" class="btn btn-outline-primary" t-attf-href="/payment/confirm/{{ pt.id }}">view treatment</a>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="payment_confirm">
+        <t t-call="portal.frontend_layout">
+            <div class="container py-2">
+                <div class="card border-0 mx-auto bg-100 rounded-0 shadow-sm bg-white o_database_list w-50 p-1">
+                    <t t-set="title">payment_confirm</t>
+                    <div class="col-sm-12">
+                        <h3> Inquiry Treatment Details</h3>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Treatment</th>
+                                  <th scope="col">Detail</th>
+                                  <th scope="col">Observation Date and Time</th>
+                                  <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="treatment" t-as="tm">
+                                    <tr>
+                                        <td><span t-field="tm.treatment"/></td>
+                                        <td><span t-field="tm.detail"/></td>
+                                        <td><span t-field="tm.observation"/></td>
+                                        <td><span t-field="tm.description"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+            </div>
+        </t>
     </template>
 </odoo>

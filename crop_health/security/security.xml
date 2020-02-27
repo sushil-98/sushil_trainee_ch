@@ -7,7 +7,7 @@
 
     <record id="group_agriexpert" model="res.groups">
         <field name="name">Agriexpert</field>
-        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="category_id" ref="crop_health.crop_health_module"/>
     </record>
 

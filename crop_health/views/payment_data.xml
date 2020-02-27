@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="payment_data_form_view" model="ir.ui.view">
+			<field name="name">payment.data.form</field>
+			<field name="model">payment.data</field>
+			<field name="arch" type="xml">
+				<form string="Payment details">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="amount"/>
+							<field name="description"/>
+							<field name="inquiry_id"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+		<record id="payment_data_tree_view" model="ir.ui.view">
+			<field name="name">payment.data.tree</field>
+			<field name="model">payment.data</field>
+			<field name="arch" type="xml">
+				<tree editable="top">
+					<!-- <field name="active" invisible="1"/> -->
+					<field name="name"/>
+					<field name="amount"/>
+					<field name="description"/>
+					<field name="payment_status"/>
+				</tree>	
+			</field>	
+		</record>
+
+
+		<record id="agriexpert_payment_action" model="ir.actions.act_window">
+			<field name="name">Payment</field>
+			<field name="res_model">payment.data</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>

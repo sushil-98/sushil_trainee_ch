@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="crop_detail_form_view" model="ir.ui.view">
+			<field name="name">crop.data.form</field>
+			<field name="model">crop.data</field>
+			<field name="arch" type="xml">
+				<form string="Crop details">
+					<sheet>
+						<group>
+							<field name="crop_name"/>
+							<field name="seed_name"/>
+							<field name="seed_no"/>
+						</group>
+					</sheet>
+				</form>	
+			</field>	
+		</record>
+
+		<record id="crop_detail_tree_view" model="ir.ui.view">
+			<field name="name">crop.data.tree</field>
+			<field name="model">crop.data</field>
+			<field name="arch" type="xml">
+				<tree string="Crop details tree view">
+					<field name="crop_name"/>
+					<field name="seed_name"/>
+					<field name="seed_no"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="crop_data_action" model="ir.actions.act_window">
+			<field name="name">Crop Details</field>
+			<field name="res_model">crop.data</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</odoo>
